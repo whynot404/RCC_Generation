@@ -51,6 +51,51 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+with st.sidebar:
+
+    st.header("📖 User Guide")
+
+    st.markdown("""
+### Before Uploading
+
+Please make sure your Excel file contains the following columns:
+
+- **Store_ID**
+- **Store_Name**
+- **CallDays**
+
+### Upload file
+1. Please make your  all **CallyDays** are uniquely identify.
+2. Please follow (Mon/Tue/Wed/Thu/Fri/Sat) as CallDays Format.
+---
+
+### Steps
+
+1. Upload the Consolidated RSR Schedule Summary.
+2. Select the Month.
+3. Enter the Year.
+4. Enter the Start Day.
+5. Provide an output filename.
+6. Click **Generate Schedule**.
+7. Download the generated ZIP file.
+
+---
+
+### Notes
+
+- Only **.xlsx** files are supported.
+- Maximum upload size: **200 MB**
+- Files are processed temporarily and are **not stored**.
+- Large outputs are automatically split into multiple CSV files.
+- Maximum of 99,998 Rows per Excel File.
+
+---
+
+### Need Help?
+
+Contact Japs, Need niya ng Sting.
+""")
+
 def create_zip(output_files: list[Path], zip_name: str) -> Path:
 
     zip_path = Path("Output") / zip_name
