@@ -9,7 +9,7 @@ from math import ceil
 
 
 
-MAX_EXPORT_LIMIT =  100 #99_998  # Maximum number of rows recommended for export
+MAX_EXPORT_LIMIT =  99_998 #99_998  # Maximum number of rows recommended for export
 SCHEDULE_FILE_NAME = "sample_sched.xlsx"  # Default schedule file name
 BASE_PATH = Path(__file__).parent  # Base path of the current script
 OUTPUT_FOLDER = BASE_PATH / 'Output'
