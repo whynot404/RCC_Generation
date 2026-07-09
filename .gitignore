@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+venv/
+
+# Streamlit cache
+.streamlit/
+
+# Temporary files
+*.tmp
+temp.xlsx
+
+# Generated files
+Output/
+*.csv
+
+# Sample data
+sample_sched.xlsx
+
+# macOS
+.DS_Store
