@@ -1,27 +1,20 @@
-# Python
-__pycache__/
-*.pyc
-
-# Virtual environment
-.venv/
-venv/
-
-# Streamlit cache
-.streamlit/
-
 # Temporary files
-*.tmp
 temp.xlsx
 
-# Generated files
-Output/
-*.csv
+# Output files
+Output/*
+!Output/.gitkeep
 
-# Sample data
-sample_sched.xlsx
+# Python
+__pycache__/
+*.py[cod]
 
 # macOS
 .DS_Store
 
-temp.xlsx
-*.xlsx
+# Virtual environments
+venv/
+.venv/
+
+# Streamlit cache
+.streamlit/
