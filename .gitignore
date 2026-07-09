@@ -22,3 +22,6 @@ sample_sched.xlsx
 
 # macOS
 .DS_Store
+
+temp.xlsx
+*.xlsx
