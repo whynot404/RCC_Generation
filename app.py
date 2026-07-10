@@ -105,16 +105,17 @@ def create_zip(output_files: list[Path], zip_name: str) -> Path:
     return zip_path
 
 st.title("ProjectRCC")
-st.write("🎉 Please upload the correct format before Running the script!")
+st.write("🎉 Please upload (1) file at time, make sure that it is in correct format before Running the script!")
 
 uploaded_file = st.file_uploader(
                 "Upload Consolidated RSR Schedule Summary",
-                type=["xlsx"]
+                type=["xlsx"],
+                accpet_multiple_files = False,
             )
 if uploaded_file:
     df = pd.read_excel(uploaded_file)
     st.success("File uploaded successfully!")
-    st.write(f'Initial checking you have **:{len(df)} ** number of outlets in your file:')
+    st.write(f'Initial checking you have **{len(df)} ** number of outlets in your file:')
     st.dataframe(df.head())
 
 with st.sidebar:
