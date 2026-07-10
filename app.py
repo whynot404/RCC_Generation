@@ -26,7 +26,7 @@ def show_summary(stats):
 
     st.write("Click outside this window to close, and Dowload the Zip File(s)")
 
-bg_img = get_base64("assets/bg.jpg")
+bg_img = get_base64("assets/hd1.jpg")
 
 st.set_page_config(
 
