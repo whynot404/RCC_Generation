@@ -89,7 +89,7 @@ def create_zip(output_files: list[Path], zip_name: str) -> Path:
 
     return zip_path
 
-st.title("ProjectRCC : RCP Schedule Generation.")
+st.title("ProjectRCC (RCP Schedule Generation)")
 st.write("🎉 Please upload the correct format before Running the script!")
 
 uploaded_file = st.file_uploader(
