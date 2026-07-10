@@ -110,7 +110,7 @@ st.write("🎉 Please upload (1) file at time, make sure that it is in correct f
 uploaded_file = st.file_uploader(
                 "Upload Consolidated RSR Schedule Summary",
                 type=["xlsx"],
-                accpet_multiple_files = False,
+                accept_multiple_files = False,
             )
 if uploaded_file:
     df = pd.read_excel(uploaded_file)
