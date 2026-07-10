@@ -15,7 +15,7 @@ bg_img = get_base64("assets/hd1.jpg")
 
 st.set_page_config(
 
-    page_title="Project RCC : RCP Schedule Generation",
+    page_title="Project RCC (RCP Schedule Generation)",
     page_icon="🐍",      # Optional: emoji or image
     layout="centered",   # or "wide"
     initial_sidebar_state="auto"
