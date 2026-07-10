@@ -114,7 +114,7 @@ uploaded_file = st.file_uploader(
 if uploaded_file:
     df = pd.read_excel(uploaded_file)
     st.success("File uploaded successfully!")
-    st.write(f'"Preview", number of unique outlets :{len(df)}')
+    st.write(f'Initial checking you have **:{len(df)} ** number of outlets in your file:')
     st.dataframe(df.head())
 
 with st.sidebar:
