@@ -99,21 +99,19 @@ def new_generate_schedule(tempfile:str,month:int, year:int,start_day:int,output_
                     
                         SCHEDULE_MAIN_LIST_SET.add(schedule)
 
-    df = pd.DataFrame(list(SCHEDULE_MAIN_LIST_SET),
+    dfload = pd.DataFrame(list(SCHEDULE_MAIN_LIST_SET),
                       columns=[
                           "STORE_ID",
                           "STORE_NAME",
                           "SERVICE_DAY"
                       ]
                       )
-    print(f"Generated schedules: {len(df)}")
-    print(f"Export limit: {MAX_EXPORT_LIMIT}")
 
-    output_files_stats =  export_data(df,output_file)
+    output_files_stats =  export_data(dfload,output_file)
 
     return {"output_files": output_files_stats,
     "unique_store_count": unique_count,
-    "total_schedule_rows": len(df)
+    "total_schedule_rows": len(dfload)
     }
         
 
