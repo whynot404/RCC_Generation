@@ -11,11 +11,26 @@ def get_base64(file):
     with open(file, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-bg_img = get_base64("assets/hd1.jpg")
+
+@st.dialog("📊 Generation Summary")
+def show_summary(stats):
+    st.success("Schedule generated successfully!")
+
+    st.metric("Unique Outlets", stats["stores"])
+    st.metric("Schedules Generated", stats["rows"])
+    st.metric("Files Generated", stats["files"])
+
+    st.write("### Output Files")
+    for file in stats["filenames"]:
+        st.write(f"• {file}")
+
+    st.write("Click outside this window to close, and Dowload the Zip File(s)")
+
+bg_img = get_base64("assets/bg.jpg")
 
 st.set_page_config(
 
-    page_title="Project RCC (RCP Schedule Generation)",
+    page_title="Project RCC",
     page_icon="🐍",      # Optional: emoji or image
     layout="centered",   # or "wide"
     initial_sidebar_state="auto"
@@ -89,7 +104,7 @@ def create_zip(output_files: list[Path], zip_name: str) -> Path:
 
     return zip_path
 
-st.title("ProjectRCC (RCP Schedule Generation)")
+st.title("ProjectRCC")
 st.write("🎉 Please upload the correct format before Running the script!")
 
 uploaded_file = st.file_uploader(
@@ -107,45 +122,45 @@ with st.sidebar:
     st.header("📖 User Guide")
 
     st.markdown("""
-### Before Uploading
+        ### Before Uploading
 
-Please make sure your Excel file contains the following columns:
+        Please make sure your Excel file contains the following columns:
 
-- **Store_ID**
-- **Store_Name**
-- **CallDays**
+        - **Store_ID**
+        - **Store_Name**
+        - **CallDays**
 
-### Upload file
-1. Please make your  all **CallyDays** are uniquely identify.
-2. Please follow (Mon/Tue/Wed/Thu/Fri/Sat) as CallDays Format.
----
+        ### Upload file
+        1. Please make your  all **CallyDays** are uniquely identify.
+        2. Please follow (Mon/Tue/Wed/Thu/Fri/Sat) as CallDays Format.
+        ---
 
-### Steps
+        ### Steps
 
-1. Upload the Consolidated RSR Schedule Summary.
-2. Select the Month.
-3. Enter the Year.
-4. Enter the Start Day.
-5. Provide an output filename.
-6. Click **Generate Schedule**.
-7. Download the generated ZIP file.
+        1. Upload the Consolidated RSR Schedule Summary.
+        2. Select the Month.
+        3. Enter the Year.
+        4. Enter the Start Day.
+        5. Provide an output filename.
+        6. Click **Generate Schedule**.
+        7. Download the generated ZIP file.
 
----
+        ---
 
-### Notes
+        ### Notes
 
-- Only **.xlsx** files are supported.
-- Maximum upload size: **200 MB**
-- Files are processed temporarily and are **not stored**.
-- Large outputs are automatically split into multiple CSV files.
-- Maximum of 99,998 Rows per Excel File.
+        - Only **.xlsx** files are supported.
+        - Maximum upload size: **200 MB**
+        - Files are processed temporarily and are **not stored**.
+        - Large outputs are automatically split into multiple CSV files.
+        - Maximum of 99,998 Rows per Excel File.
 
----
+        ---
 
-### Need Help?
+        ### Need Help?
 
-Contact Japs, Need niya ng Sting.
-""")
+        Contact Japs, Need niya ng Sting.
+        """)
 
 month = st.selectbox(
                 "Month",
@@ -188,10 +203,19 @@ if uploaded_file:
                 start_day=start_day,
                 output_file=output_name,
                 )
-            zip_file = create_zip(output_files, "Generated_Schedule.zip")    
+                       
+            stats = {
+                "stores": output_files["unique_store_count" ],
+                "rows": output_files["total_schedule_rows"],
+                "files": len(output_files["output_files"]),
+                "filenames": [p.name for p in output_files["output_files"]],
+            }
+            show_summary(stats)
+
+
+            zip_file = create_zip(output_files["output_files"], "Generated_Schedule.zip")    
 
             st.success("Schedule generated successfully!")
-
             st.balloons()
             st.toast("✅ 🗂️Generation Complete! Download the ZIP File.")
             col1, col2, col3 = st.columns([1, 2, 5])
