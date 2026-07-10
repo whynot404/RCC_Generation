@@ -11,7 +11,7 @@ def get_base64(file):
     with open(file, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-bg_img = get_base64("assets/bg4.jpg")
+bg_img = get_base64("assets/bg5.jpg")
 
 st.set_page_config(
 
