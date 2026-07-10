@@ -15,7 +15,7 @@ bg_img = get_base64("assets/hd1.jpg")
 
 st.set_page_config(
 
-    page_title="Project RCC",
+    page_title="Project RCC : RCP Schedule Generation",
     page_icon="🐍",      # Optional: emoji or image
     layout="centered",   # or "wide"
     initial_sidebar_state="auto"
@@ -57,13 +57,9 @@ st.markdown("""
 div[data-testid="stDownloadButton"] > button {
 
     width: 100%;
-
     height: 70px;
-
     font-size: 22px;
-
     font-weight: bold;
-
     border-radius: 12px;
 
 }
@@ -72,13 +68,9 @@ div[data-testid="stDownloadButton"] > button {
 div[data-testid="stButton"] > button {
 
     width: 100%;
-
     height: 60px;
-
     font-size: 20px;
-
     font-weight: bold;
-
     border-radius: 12px;
 
 }
@@ -97,7 +89,7 @@ def create_zip(output_files: list[Path], zip_name: str) -> Path:
 
     return zip_path
 
-st.title("ProjectRCC")
+st.title("ProjectRCC : RCP Schedule Generation.")
 st.write("🎉 Please upload the correct format before Running the script!")
 
 uploaded_file = st.file_uploader(
