@@ -15,10 +15,9 @@ def get_base64(file):
 @st.dialog("📊 Generation Summary")
 def show_summary(stats):
     st.success("Schedule generated successfully!")
-
-    st.metric("Unique Outlets", stats["stores"])
-    st.metric("Schedules Generated", stats["rows"])
-    st.metric("Files Generated", stats["files"])
+    st.metric("Unique Outlets", f"{stats['stores']:,}")
+    st.metric("Schedules Generated", f"{stats['rows']:,}")
+    st.metric("Files Generated", f"{stats['files']:,}")
 
     st.write("### Output Files")
     for file in stats["filenames"]:
