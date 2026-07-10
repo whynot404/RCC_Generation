@@ -108,6 +108,11 @@ def new_generate_schedule(tempfile:str,month:int, year:int,start_day:int,output_
     print(f"Generated schedules: {len(df)}")
     print(f"Export limit: {MAX_EXPORT_LIMIT}")
 
-    return export_data(df,output_file)
+    output_files_stats =  export_data(df,output_file)
+
+    return {"output_files": output_files_stats,
+    "unique_store_count": len(STORE_LIST),
+    "total_schedule_rows": len(df)
+    }
         
 
