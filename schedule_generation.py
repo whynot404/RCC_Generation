@@ -58,6 +58,7 @@ def new_generate_schedule(tempfile:str,month:int, year:int,start_day:int,output_
     
     SCHEDULE_MAIN_LIST_SET = set()
     df = new_load_data(tempfile)
+    unique_count =  df.iloc[:, 0].nunique()
     STORE_LIST = df.values.tolist()
 
     last_day = calendar.monthrange(year, month)[1]
@@ -111,7 +112,7 @@ def new_generate_schedule(tempfile:str,month:int, year:int,start_day:int,output_
     output_files_stats =  export_data(df,output_file)
 
     return {"output_files": output_files_stats,
-    "unique_store_count": len(STORE_LIST),
+    "unique_store_count": unique_count,
     "total_schedule_rows": len(df)
     }
         
