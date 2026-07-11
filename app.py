@@ -174,12 +174,15 @@ year = st.number_input(
     max_value=2050,
     value=2026
 )
+last_day_of_month =calendar.monthrange(year,month)[1]
+st.caption(f"Last day of {calendar.month_name[month]} {year}: **{last_day_of_month}**")
 
-start_day = st.number_input(
+start_day = st.selectbox(
     "Start Day",
-    min_value=1,
-    max_value=31,
-    value=1
+    options=list(range(1, last_day_of_month + 1)),
+    index = 0,
+    help  = f"Select a day between 1 and {last_day_of_month}."
+
 )
 
 output_name = st.text_input(
