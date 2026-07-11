@@ -23,9 +23,19 @@ def show_summary(stats):
     st.metric("Date and Time", f"{stats['generation_date']}")
     
 
-    st.write("### Output Files")
-    for file in stats["filenames"]:
-        st.write(f"• {file}")
+    st.write("### 📁 Output Files")
+    max_show = 3
+
+    if len(stats["filenames"]) <= max_show:
+        for file in stats["filenames"]:
+            st.write(f"• `{file}`")
+    else:
+        for file in stats["filenames"][:max_show]:
+            st.write(f"• `{file}`")
+
+        remaining = len(stats["filenames"]) - max_show
+        st.caption(f"Showing the first {max_show} of {len(stats['filenames'])} generated files. "
+                f"{remaining} additional file(s) are included in the ZIP download.")
 
     st.write("Click outside this window to close, and Dowload the Zip File(s)")
 
