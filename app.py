@@ -184,6 +184,28 @@ start_day = st.selectbox(
     help  = f"Select a day between 1 and {last_day_of_month}."
 
 )
+@st.dialog("Select File Upload types")
+def select_type_dialog():
+    st.write("What type of mode this file would be? ")
+    f_file = st.selectbox('Types',
+                 options = list(['Delivery Online','Delivery Offline','Retailer']),
+                 index=0)
+    if st.button('Submit', use_container_width = True):
+        st.session_state["select_type"]  = f_file
+        st.rerun()
+st.write(st.session_state)
+
+if "select_type" not in st.session_state:
+    st.session_state["select_type"] = "Delivery Online"
+
+col1, col2 = st.columns([3, 1])
+
+with col1:
+    st.info(f"📂 File Type: **{st.session_state['select_type']}**")
+with col2:
+    if st.button("Change Type"):
+        select_type_dialog()
+
 
 output_name = st.text_input(
 "Output filename",
@@ -198,7 +220,7 @@ if uploaded_file:
         temp_path = tmp.name
 
     if st.button("🚀 Generate Schedule"):
-    
+            generated_zip_with_file_type = str(st.session_state["select_type"])+'_'+'Generated_Schedule.zip'
             with st.spinner('Generating Now.. Please wait.'):
                 output_files = new_generate_schedule(tempfile=temp_path,
                 month=month,
@@ -216,7 +238,7 @@ if uploaded_file:
             show_summary(stats)
 
 
-            zip_file = create_zip(output_files["output_files"], "Generated_Schedule.zip")    
+            zip_file = create_zip(output_files["output_files"], generated_zip_with_file_type)    
 
             st.success("Schedule generated successfully!")
             st.balloons()
@@ -229,8 +251,8 @@ if uploaded_file:
                     st.download_button(
                         "📦 Download Schedule ZIP",
                         data=f,
-                        file_name="Generated_Schedule.zip",
-                        mime="application/zip",
+                        file_name = generated_zip_with_file_type,
+                        mime = "application/zip",
 
                     )
 
