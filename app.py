@@ -126,6 +126,12 @@ with st.sidebar:
     st.header("📖 User Guide")
 
     st.markdown("""
+        ### About
+        
+        Project RCC automatically generates delivery schedules
+        based on the uploaded RSR Schedule Summary
+        while honoring each outlet's configured Call Days.  
+        
         ### Before Uploading
 
         Please make sure your Excel file contains the following columns:
