@@ -241,7 +241,7 @@ with col1:
             flex-direction:column;
             justify-content:center;
         ">
-        <b>📂 File Type</b><br><span style="font-size:17px;color:#5CB8FF;">
+        <b>📂 File Type</b><span style="font-size:17px;color:#5CB8FF;"><br>
         {st.session_state['select_type']}
         </span>
         </div>
