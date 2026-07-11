@@ -142,7 +142,7 @@ with st.sidebar:
         3. Enter the Year.
         4. Enter the Start Day.
         5. Provide an output filename.
-        6. Select file type tags (Onlne/Offline/Retailer).
+        6. Please select the appropriate file type: Online, Offline, or Retailer.
         8. Click **Generate Schedule**.
         7. Download the generated ZIP file.
 
@@ -190,7 +190,7 @@ start_day = st.selectbox(
 )
 @st.dialog("Select File Upload types")
 def select_type_dialog():
-    st.write("What type of mode this file would be? ")
+    st.write(" What type of file are you uploading? ")
     f_file = st.selectbox('Types',
                  options = list(['Delivery Online','Delivery Offline','Retailer']),
                  index=0)
