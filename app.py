@@ -26,17 +26,19 @@ def show_summary(stats):
     st.write("### 📁 Output Files")
     max_show = 3
 
-    if len(stats["filenames"]) <= max_show:
-        for file in stats["filenames"]:
-            st.write(f"• `{file}`")
+   if len(stats["filenames"]) <= max_show:
+       files = stats["filenames"]
     else:
-        for file in stats["filenames"][:max_show]:
-            st.write(f"• `{file}`")
+        files = stats["filenames"][:max_show]
 
-        remaining = len(stats["filenames"]) - max_show
-        st.caption(f"Showing the first {max_show} of {len(stats['filenames'])} generated files. "
-                f"{remaining} additional file(s) are included in the ZIP download.")
+    file_list = "\n".join(f"- `{file}`" for file in files)
 
+    st.markdown(file_list)
+
+    remaining = len(stats["filenames"]) - max_show
+    st.caption(f"Showing the first {max_show} of {len(stats['filenames'])} generated files. "
+            f"{remaining} additional file(s) are included in the ZIP download.")
+    
     st.write("Click outside this window to close, and Dowload the Zip File(s)")
 
 bg_img = get_base64("assets/hd1.jpg")
