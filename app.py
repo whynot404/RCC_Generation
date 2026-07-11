@@ -240,6 +240,7 @@ if uploaded_file:
                 "stores": output_files["unique_store_count" ],
                 "rows": output_files["total_schedule_rows"],
                 "files": len(output_files["output_files"]),
+                "filenames": [p.name for p in output_files["output_files"]],
                 "filetype": st.session_state["select_type"],
                 "generation_date" : datetime.now().strftime("%B %d, %Y %I:%M %p")
             }
