@@ -173,7 +173,8 @@ with st.sidebar:
 month = st.selectbox(
                 "Month",
                 range(1,13),
-                index=0      # July
+                index=0,
+                format_func = lambda x : calendar.month_name[x] # July
             )
 
 year = st.number_input(
