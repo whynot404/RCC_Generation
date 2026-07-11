@@ -15,9 +15,12 @@ def get_base64(file):
 @st.dialog("📊 Generation Summary")
 def show_summary(stats):
     st.success("Schedule generated successfully!")
+    st.metric("Type", f"{stats['filetype']}")
     st.metric("Unique Outlets", f"{stats['stores']:,}")
     st.metric("Schedules Generated", f"{stats['rows']:,}")
     st.metric("Files Generated", f"{stats['files']:,}")
+    st.metric("Date and Time", f"{stats['generation_date']}")
+    
 
     st.write("### Output Files")
     for file in stats["filenames"]:
@@ -236,7 +239,8 @@ if uploaded_file:
                 "stores": output_files["unique_store_count" ],
                 "rows": output_files["total_schedule_rows"],
                 "files": len(output_files["output_files"]),
-                "filenames": [p.name for p in output_files["output_files"]],
+                "filetype": st.session_state["select_type"],
+                "generation_date" : datetime.now().strftime("%B %d, %Y %I:%M %p")
             }
             show_summary(stats)
 
