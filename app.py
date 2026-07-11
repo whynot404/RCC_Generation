@@ -193,7 +193,6 @@ def select_type_dialog():
     if st.button('Submit', use_container_width = True):
         st.session_state["select_type"]  = f_file
         st.rerun()
-st.write(st.session_state)
 
 if "select_type" not in st.session_state:
     st.session_state["select_type"] = "Delivery Online"
@@ -226,7 +225,7 @@ if uploaded_file:
                 month=month,
                 year=year,
                 start_day=start_day,
-                output_file=output_name,
+                output_file= str(st.session_state["select_type"])+"_"+output_name,
                 )
                        
             stats = {
