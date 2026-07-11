@@ -142,7 +142,8 @@ with st.sidebar:
         3. Enter the Year.
         4. Enter the Start Day.
         5. Provide an output filename.
-        6. Click **Generate Schedule**.
+        6. Select file type tags (Onlne/Offline/Retailer).
+        8. Click **Generate Schedule**.
         7. Download the generated ZIP file.
 
         ---
@@ -154,9 +155,12 @@ with st.sidebar:
         - Files are processed temporarily and are **not stored**.
         - Large outputs are automatically split into multiple CSV files.
         - Maximum of 99,998 Rows per Excel File.
-
+        - Schedules are generated only for the outlet’s assigned call days.
+        If the selected start date is not one of the configured call days (e.g., Sunday),
+        generation will begin on the next valid call day.
+        
         ---
-
+        
         ### Need Help?
 
         Contact Japs, Need niya ng Sting.
