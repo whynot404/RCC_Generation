@@ -226,7 +226,7 @@ def select_type_dialog():
 if "select_type" not in st.session_state:
     st.session_state["select_type"] = "Delivery Online"
 
-col1, col2 = st.columns([3, 1])
+col1, col2 = st.columns([3, 2])
 
 with col1:
     st.markdown(f"""
@@ -244,7 +244,6 @@ with col1:
         <b>📂 File Type</b><span style="font-size:17px;color:#5CB8FF;">
         {st.session_state['select_type']}
         </span>
-        <br>
         </div>
     """, unsafe_allow_html=True)
     
