@@ -30,10 +30,12 @@ def show_summary(stats):
     st.write("Click outside this window to close, and Dowload the Zip File(s)")
 
 bg_img = get_base64("assets/hd1.jpg")
+st.title(" RTM Command Center")
+st.header("📅 DMS Schedule Generator", divider = True )
 
 st.set_page_config(
 
-    page_title="Project RCC",
+    page_title="RCC - Schedule Generator",
     page_icon="🐍",      # Optional: emoji or image
     layout="centered",   # or "wide"
     initial_sidebar_state="auto"
@@ -59,11 +61,12 @@ st.markdown("""
     max-width: 850px;
     margin: 90px auto 0 auto;
     padding: 35px;
-    backdrop-filter: blur(10px);
-    background: rgba(58,58,58,.75);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,.35);
+            
+    background: rgba(48,92,222,.70);
+    backdrop-filter: blur(35px);
+    border:1px solid rgba(255,255,255,.35);
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
+    border-radius:20px;
 }
 
 </style>
@@ -107,7 +110,6 @@ def create_zip(output_files: list[Path], zip_name: str) -> Path:
 
     return zip_path
 
-st.title("ProjectRCC")
 st.write("🎉 Please upload (1) file at time, make sure that it is in correct format before Running the script!")
 
 uploaded_file = st.file_uploader(
@@ -215,9 +217,25 @@ if "select_type" not in st.session_state:
 col1, col2 = st.columns([3, 1])
 
 with col1:
-    st.info(f"📂 File Type: **{st.session_state['select_type']}**")
+    <div style="
+            background:#1E2533;
+            border-left:6px solid #4EA8FF;
+            border-radius:10px;
+            padding:18px;
+            color:white;
+            height:70px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        ">
+        <b>📂 File Type</b><span style="font-size:17px;color:#5CB8FF;">
+        {st.session_state['select_type']}
+        </span>
+        </div>
+    """, unsafe_allow_html=True)
+    
 with col2:
-    if st.button("Change Type"):
+    if st.button("Change Type",use_container_width=True):
         select_type_dialog()
 
 
