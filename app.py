@@ -217,7 +217,8 @@ if "select_type" not in st.session_state:
 col1, col2 = st.columns([3, 1])
 
 with col1:
-    <div style="
+    st.markdown(f"""
+        <div style="
             background:#1E2533;
             border-left:6px solid #4EA8FF;
             border-radius:10px;
