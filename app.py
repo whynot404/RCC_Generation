@@ -26,7 +26,7 @@ def show_summary(stats):
     st.write("### 📁 Output Files")
     max_show = 3
 
-   if len(stats["filenames"]) <= max_show:
+    if len(stats["filenames"]) <= max_show:
        files = stats["filenames"]
     else:
         files = stats["filenames"][:max_show]
