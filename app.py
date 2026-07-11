@@ -57,10 +57,10 @@ st.markdown("""
 
 .block-container {
     max-width: 850px;
-    margin: 100px auto 0 auto;
-    padding: 40px;
-    backdrop-filter: blur(20px);
-    background: rgba(20,20,20,.55);
+    margin: 90px auto 0 auto;
+    padding: 35px;
+    backdrop-filter: blur(10px);
+    background: rgba(58,58,58,.75);
     border: 1px solid rgba(255,255,255,.15);
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0,0,0,.35);
