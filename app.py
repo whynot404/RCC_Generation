@@ -8,6 +8,35 @@ import base64
 import calendar
 from datetime import datetime
 
+
+#----------------- LOGIN -----------------#
+users = st.secrets["users"]
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+    st.session_state.username = None
+    st.session_state.user_role = users
+
+
+#----------------- LOGIN END -----------------#
+
+#----------------- FUNCTIONS -----------------#
+def login():
+    # Hardcoded credentials for demonstration purposes
+    
+   # st.title("🔐 ProjectRCC Login")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Login", use_container_width=True):
+        if username in users and password == users[username]:
+            st.session_state.logged_in = True
+            st.session_state.username = username
+                
+            st.rerun()
+        else:
+            st.error("Invalid username or password.")
+
 def get_base64(file):
     with open(file, "rb") as f:
         return base64.b64encode(f.read()).decode()
@@ -40,6 +69,15 @@ def show_summary(stats):
             f"{remaining} additional file(s) are included in the ZIP download.")
     
     st.write("Click outside this window to close, and Dowload the Zip File(s)")
+
+with st.sidebar:
+    st.write(f"👤 Logged in as **{st.session_state.username}**")
+    if st.button("🚪 Logout", use_container_width=True):
+        st.session_state.logged_in = False
+        del st.session_state['username']
+        st.success("Logged out successfully!")
+        st.rerun()
+
 
 bg_img = get_base64("assets/hd1.jpg")
 st.title(" RTM Command Center")
