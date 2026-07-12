@@ -7,6 +7,7 @@ import tempfile
 import base64
 import calendar
 from datetime import datetime
+from time import sleep
 
 
 #----------------- LOGIN -----------------#
