@@ -33,6 +33,8 @@ def login():
         if username in users and password == users[username]:
             st.session_state.logged_in = True
             st.session_state.username = username
+            with st.spinner("Signing in..."):
+                sleep(2.5)
                 
             st.rerun()
         else:
