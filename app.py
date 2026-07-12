@@ -10,7 +10,7 @@ from datetime import datetime
 
 
 #----------------- LOGIN -----------------#
-users = st.secrets["users"]
+
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -23,7 +23,7 @@ if "logged_in" not in st.session_state:
 #----------------- FUNCTIONS -----------------#
 def login():
     # Hardcoded credentials for demonstration purposes
-    
+    users = st.secrets["users"]
    # st.title("🔐 ProjectRCC Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
