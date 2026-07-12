@@ -11,15 +11,16 @@ from datetime import datetime
 
 #----------------- LOGIN -----------------#
 users = st.secrets["users"]
-st.write(users)
+
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     
 if "username" not in st.session_state:
     st.session_state.username = ""
-st.write(st.session_state)
-st.stop()
+    
+
+
 #----------------- LOGIN END -----------------#
 
 #----------------- FUNCTIONS -----------------#
@@ -74,9 +75,9 @@ def show_summary(stats):
 
 with st.sidebar:
     st.write(f"👤 Logged in as **{st.session_state.username}**")
-    if st.button("🚪 Logout", use_container_width=True):
+    if st.button("🚪 Logout", use_container_width = True):
         st.session_state.logged_in = False
-        del st.session_state['username']
+        st.session_state.username = ''
         st.success("Logged out successfully!")
         st.rerun()
 
