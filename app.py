@@ -189,6 +189,11 @@ def main():
             Project RCC automatically generates delivery schedules
             based on the uploaded RSR Schedule Summary
             while honoring each outlet's configured Call Days.  
+
+            © 2026 ProjectRCC
+            Version 1.0.0
+            Build Date 2026.07
+            ** Stricly for Internal Use Only**
             
             ### Before Uploading
     
@@ -393,6 +398,7 @@ if not st.session_state.logged_in:
                     margin: 10px 10px 10px 10px;
                     padding: 20px 10px 20px 10px;
                     border-radius: 10px;
+                    backdrop-filter: blur(10px);
                     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                     text-align: center;
                 </style>   
@@ -440,3 +446,28 @@ if not st.session_state.logged_in:
     st.stop()
 
 main()
+
+#------------------ APP FLOW -----------------#
+# Developer: Japs
+# Date: 2024-06-20  
+#Dev note: The flow of the app is as follows:
+
+            # Start App
+            #       │
+            #       ▼
+            # Initialize Session State
+            #       │
+            #       ▼
+            # Logged In?
+            #    │        │
+            #   No       Yes
+            #    │        │
+            # login()   main()
+            #    │        │
+            # st.stop() sidebar()
+            #             │
+            #             ▼
+            #         Generate Module
+
+
+#------------------ APP FLOW END -----------------#
