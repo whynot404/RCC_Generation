@@ -12,7 +12,6 @@ from datetime import datetime
 #----------------- LOGIN -----------------#
 users = st.secrets["users"]
 
-
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     
@@ -74,6 +73,7 @@ def show_summary(stats):
     st.write("Click outside this window to close, and Dowload the Zip File(s)")
 
 with st.sidebar:
+    st.write(st.session_state)
     st.write(f"👤 Logged in as **{st.session_state.username}**")
     if st.button("🚪 Logout", use_container_width = True):
         st.session_state.logged_in = False
