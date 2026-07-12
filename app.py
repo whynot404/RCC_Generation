@@ -18,7 +18,7 @@ if "logged_in" not in st.session_state:
     
 if "username" not in st.session_state:
     st.session_state.username = ""
-st.write(st.sesion_state)
+st.write(st.session_state)
 st.stop()
 #----------------- LOGIN END -----------------#
 
