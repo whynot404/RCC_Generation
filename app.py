@@ -191,10 +191,12 @@ def main():
             while honoring each outlet's configured Call Days.  
     
             ## © 2026 ProjectRCC
+            <small>
             [Version 1.0.0]
             [Build Date 2026.07]
             Stricly for Internal Use Only
-            --
+            </small>
+            ---
             ### Before Uploading
     
             Please make sure your Excel file contains the following columns:
