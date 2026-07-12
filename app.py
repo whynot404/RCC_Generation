@@ -191,9 +191,9 @@ def main():
             while honoring each outlet's configured Call Days.  
     
             ## © 2026 ProjectRCC
-            -Version 1.0.0
-            -Build Date 2026.07
-            -**Stricly for Internal Use Only**
+            [Version 1.0.0]
+            [Build Date 2026.07]
+            Stricly for Internal Use Only
             --
             ### Before Uploading
     
