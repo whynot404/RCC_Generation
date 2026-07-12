@@ -14,8 +14,6 @@ users = st.secrets["users"]
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
-    st.session_state.user_role = users
-
 
 #----------------- LOGIN END -----------------#
 
@@ -23,7 +21,6 @@ if "logged_in" not in st.session_state:
 def login():
     # Hardcoded credentials for demonstration purposes
     users = st.secrets["users"]
-   # st.title("🔐 ProjectRCC Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
 
@@ -35,6 +32,7 @@ def login():
             st.rerun()
         else:
             st.error("Invalid username or password.")
+
 
 def get_base64(file):
     with open(file, "rb") as f:
