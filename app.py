@@ -189,8 +189,8 @@ def main():
             Project RCC automatically generates delivery schedules
             based on the uploaded RSR Schedule Summary
             while honoring each outlet's configured Call Days.  
-    
-            ©2026 ProjectRCC
+            
+            ProjectRCC 2026 
             Version 1.0.0
             ---
             ### Before Uploading
