@@ -34,8 +34,46 @@ def login():
         if username in users and password == users[username]:
             st.session_state.logged_in = True
             st.session_state.username = username
-            with st.spinner("Signing in..."):
-                sleep(2.5)
+            
+            loading = st.empty()
+
+            loading.markdown("""
+            <div style="
+                background: #86889e;
+                border-radius: 12px;
+                padding: 30px;
+                text-align: center;
+                box-shadow: 0 8px 20px rgba(0,0,0,.15);
+
+            ">
+            <div class="loader"></div>
+            <p style="margin-top:20px;
+                    color:#1F2937;
+                    font-size:14px;
+                    text-align: center;
+                    font-weight:600;"
+                    >
+            Signing in.... Please wait.
+            </p>
+            </div>     
+            <style>
+
+            .loader{
+                width:50px;
+                height:50px;
+                margin:auto;
+                border:5px solid #E5E7EB;
+                border-top:5px solid #2563EB;
+                border-radius:50%;
+                animation:spin 1.8s linear infinite;
+            }
+            @keyframes spin{
+              to { transform:rotate(360deg);}
+            }
+            </style>             
+            """, unsafe_allow_html=True)
+            sleep(2.5)
+            loading.empty()
                 
             st.rerun()
         else:
