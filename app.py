@@ -347,17 +347,95 @@ def main():
     
                         )
 if not st.session_state.logged_in:
-    st.markdown(
-        """
-        <div class="main-card">
-            <h1 style="text-align:center;">🔐 ProjectRCC</h1>
-            <p style="text-align:center;">
-                Please sign in to continue.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    left, center, right = st.columns([1, 2, 1])
+    st.markdown("""
+                <style>
+
+                /* Center column */
+                div[data-testid="stColumn"]:nth-of-type(2) > div[data-testid="stVerticalBlock"]{
+                    background:#FFFFFF;
+                    mix-blend-mode: normal;
+                    margin: 10px auto;
+                    border-radius:20px;
+                    padding:10px;
+                    box-shadow:0 15px
+                }
+                </style>
+    """, unsafe_allow_html=True)
+    
+    with center:
+    
+        with st.container(border=True):
+           
+            st.markdown("""<style>
+            .login-wrapper {
+                background:white;
+                border-radius: 10px;
+                padding: 20px;
+                border:none;
+                box-shadow:0 15px 40px rgba(0,0,0,.18);
+                
+            }
+            </style>""", unsafe_allow_html=True)
+            st.markdown(
+                """
+                <div class="login-card">
+                    <h1 style="text-align:center; margin-bottom:10px; font-size:34px; font-weight:700;
+                    ">
+                    🔐 ProjectRCC</h1>
+                    <p style="text-align:center; margin-top:0px; margin-bottom:0px; font-size:12px; color:#E5E7EB;">
+                    Please sign in to continue.</p>
+                </div>
+            
+                <style>
+                .login-card{
+                    background-color: rgba(55, 55, 55, 0.9);
+                    margin: 10px 10px 10px 10px;
+                    padding: 20px 10px 20px 10px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    text-align: center;
+                </style>   
+                """,
+                unsafe_allow_html=True
+            )
+            st.markdown("""
+            <style>
+            .stApp {
+                background: linear-gradient(135deg, #1E40AF 0%, #2563EB 55%, #3B82F6 100%);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            </style>
+                        """,
+                        unsafe_allow_html=True)
+            st.markdown("""
+            <style>
+
+            /* Labels */
+            .stTextInput label{
+                color:#111827;
+                font-weight:600;}
+        
+            .stTextInput input{
+            color:#white;
+            }
+            .stTextInput input:focus{
+                border:2px solid #2563EB;
+
+            }
+                       
+            .stButton > button:hover{
+            background:#2563EB;
+            color:white;
+            border:none;
+            transform:translateY(-2px);
+            box-shadow:0 8px 18px rgba(37,99,235,.35);
+            cursor:pointer;
+            }
+            </style>
+            """, unsafe_allow_html=True)
     login()
     st.stop()
 
