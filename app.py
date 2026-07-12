@@ -436,7 +436,7 @@ if not st.session_state.logged_in:
             }
             </style>
             """, unsafe_allow_html=True)
-    login()
+            login()
     st.stop()
 
 main()
