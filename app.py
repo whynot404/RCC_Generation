@@ -82,7 +82,7 @@ def show_summary(stats):
     
     st.write("Click outside this window to close, and Dowload the Zip File(s)")
 
-def main()
+def main():
     sidebarlogin()
 
     bg_img = get_base64("assets/hd1.jpg")
