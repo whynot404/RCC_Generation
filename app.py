@@ -37,6 +37,16 @@ def login():
             st.rerun()
         else:
             st.error("Invalid username or password.")
+            
+def sidebarlogin():
+    with st.sidebar:
+    st.write(st.session_state)
+    st.write(f"👤 Logged in as **{st.session_state.username}**")
+    if st.button("🚪 Logout", use_container_width = True):
+        st.session_state.logged_in = False
+        st.session_state.username = ''
+        st.success("Logged out successfully!")
+        st.rerun()
 
 
 def get_base64(file):
@@ -72,14 +82,6 @@ def show_summary(stats):
     
     st.write("Click outside this window to close, and Dowload the Zip File(s)")
 
-with st.sidebar:
-    st.write(st.session_state)
-    st.write(f"👤 Logged in as **{st.session_state.username}**")
-    if st.button("🚪 Logout", use_container_width = True):
-        st.session_state.logged_in = False
-        st.session_state.username = ''
-        st.success("Logged out successfully!")
-        st.rerun()
 
 
 bg_img = get_base64("assets/hd1.jpg")
@@ -343,5 +345,19 @@ if uploaded_file:
                         mime = "application/zip",
 
                     )
+if not st.session_state.logged_in:
+    st.markdown(
+        """
+        <div class="main-card">
+            <h1 style="text-align:center;">🔐 ProjectRCC</h1>
+            <p style="text-align:center;">
+                Please sign in to continue.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    login()
+    st.stop()
 
 
