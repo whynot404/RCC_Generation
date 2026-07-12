@@ -11,7 +11,8 @@ from datetime import datetime
 
 #----------------- LOGIN -----------------#
 users = st.secrets["users"]
-
+st.write(users)
+st.stop()
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     
@@ -73,7 +74,7 @@ with st.sidebar:
     st.write(f"👤 Logged in as **{st.session_state.username}**")
     if st.button("🚪 Logout", use_container_width=True):
         st.session_state.logged_in = False
-        #del st.session_state['username']
+        del st.session_state['username']
         st.success("Logged out successfully!")
         st.rerun()
 
