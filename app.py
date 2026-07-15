@@ -126,7 +126,7 @@ def show_summary(stats):
 def main():
     sidebarlogin()
 
-    bg_img = get_base64("assets/hd1.jpg")
+    bg_img = get_base64("assets/bgpcppi1.jpg")
     st.title(" RTM Command Center")
     st.header("📅 DMS Schedule Generator", divider = True )
     
@@ -143,7 +143,7 @@ def main():
     
     .stApp {{
         background-image: url("data:image/jpeg;base64,{bg_img}");
-        background-size: cover;
+        background-size: 100% 120%;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
