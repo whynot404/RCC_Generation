@@ -105,9 +105,9 @@ def new_generate_schedule(tempfile:str,month:int, year:int,start_day:int,output_
                           "STORE_NAME",
                           "SERVICE_DAY"
                       ]
-                      ).sort_values(by="SERVICE_DAY", ascending=True)
+                      )
 
-    output_files_stats =  export_data(dfload,output_file)
+    output_files_stats =  export_data(dfload.sort_values(by="SERVICE_DAY", ascending=True),output_file)
 
     return {"output_files": output_files_stats,
     "unique_store_count": unique_count,
