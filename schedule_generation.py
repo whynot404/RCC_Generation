@@ -105,7 +105,7 @@ def new_generate_schedule(tempfile:str,month:int, year:int,start_day:int,output_
                           "STORE_NAME",
                           "SERVICE_DAY"
                       ]
-                      ).sort_values(by=["STORE_ID,SERVICE_DAY"], ascending=[True,True])
+                      ).sort_values(by="SERVICE_DAY", ascending=True)
 
     output_files_stats =  export_data(dfload,output_file)
 
