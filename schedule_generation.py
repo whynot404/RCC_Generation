@@ -3,7 +3,7 @@
 import time
 import calendar
 import pandas as pd
-#import os
+import re
 from pathlib import Path
 from math import ceil
 
@@ -72,9 +72,9 @@ def new_generate_schedule(tempfile:str,month:int, year:int,start_day:int,output_
             # Service Days (e.g. Mon/Wed/Fri)
             if pd.isna(s_name[2]):
                 continue
-            
-            service_days = str(s_name[2]).split("/")
-
+        
+            service_days = re.sub(r"[-,]","/", str(s_name[2)).split("/") # correction if there's incorrect slices
+        
             for week in calendar.monthcalendar(year, month):
                 for day in week:
 
