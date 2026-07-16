@@ -140,16 +140,16 @@ def show_summary(stats):
             f"{remaining} additional file(s) are included in the ZIP download. \n Click outside this window to close, and Dowload the Zip File(s)")
     st.button("🆙 Upload Task Agent.")
 
- def create_zip(output_files: list[Path], zip_name: str) -> Path:
-    
-        zip_path = Path("Output") / zip_name
-    
-        with ZipFile(zip_path, "w") as zip_file:
-    
-            for file in output_files:
-                zip_file.write(file, arcname=file.name)
-    
-        return zip_path
+def create_zip(output_files: list[Path], zip_name: str) -> Path:
+
+    zip_path = Path("Output") / zip_name
+
+    with ZipFile(zip_path, "w") as zip_file:
+
+        for file in output_files:
+            zip_file.write(file, arcname=file.name)
+
+    return zip_path
      
 def load_page_base():
     sidebarlogin()
