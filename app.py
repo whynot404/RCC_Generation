@@ -242,7 +242,7 @@ def main():
                 )
     if uploaded_file:
         df = pd.read_excel(uploaded_file)
-        
+        preview = f"Number of outlets to be generated based on the uploaded file :{len(df)}"
         with st.expander("Show Details",type='compact'):
             st.success("File uploaded successfully!")
             st.caption(preview)
