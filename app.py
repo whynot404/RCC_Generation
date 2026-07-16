@@ -310,7 +310,7 @@ def main():
             ---
             """)
     
-   st.subheader("Month & Date Range", divider=True)
+    st.subheader("Month & Date Range", divider=True)
     main_sel1, main_sel2, main_sel3 = st.columns(3,gap='small')
     with main_sel1:
         month = st.selectbox(
@@ -331,13 +331,13 @@ def main():
     last_day_of_month =calendar.monthrange(year,month)[1]
     st.caption(f"Last day of {calendar.month_name[month]} {year}: **{last_day_of_month}**")
 
-   with main_sel2:
+    with main_sel2:
         start_day = st.selectbox(
             "Start Day",
             options=list(range(1, last_day_of_month + 1)),
             index = 0,
             help  = f"Select a day between 1 and {last_day_of_month}."
-
+    
         )
 
     @st.dialog("Select File Upload types")
