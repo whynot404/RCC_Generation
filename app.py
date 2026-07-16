@@ -243,7 +243,7 @@ def main():
     if uploaded_file:
         df = pd.read_excel(uploaded_file)
         
-         with st.expander("Show Details",type='compact'):
+        with st.expander("Show Details",type='compact'):
             st.success("File uploaded successfully!")
             st.caption(preview)
             st.dataframe(df.nunique())
