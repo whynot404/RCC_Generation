@@ -21,7 +21,7 @@ if "logged_in" not in st.session_state:
 if "username" not in st.session_state:
     st.session_state.username = ""
 
-If  "sandbox_ab_status" not in st.session_state:
+if "sandbox_ab_status" not in st.session_state:
     # Initial state if user ab is not logged in in sandbox
     st.session_state.sandbox_credentials = () # tuple to make unchangable , ab sanbox link  credentials
     st.session_state.sandbox_auto_uploading_status = False # initial state of upload status
