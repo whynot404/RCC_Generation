@@ -247,7 +247,7 @@ def main():
             st.success("File uploaded successfully!")
             st.caption(preview)
             st.dataframe(df.nunique())
-    
+
     with st.sidebar:
     
         st.header("📖 User Guide")
