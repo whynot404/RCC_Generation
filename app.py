@@ -130,7 +130,7 @@ def show_summary(stats):
 
     st.markdown(file_list)
 
-     with st.expander("Show Files"):
+    with st.expander("Show Files"):
         st.markdown(file_list)
 
     remaining = len(stats["filenames"]) - max_show
