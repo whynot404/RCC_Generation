@@ -12,12 +12,21 @@ from time import sleep
 
 #----------------- LOGIN -----------------#
 users = st.secrets["users"]
+roles = st.secrets["roles"]
+
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     
 if "username" not in st.session_state:
     st.session_state.username = ""
+
+If  "sandbox_ab_status" not in st.session_state:
+    # Initial state if user ab is not logged in in sandbox
+    st.session_state.sandbox_credentials = () # tuple to make unchangable , ab sanbox link  credentials
+    st.session_state.sandbox_auto_uploading_status = False # initial state of upload status
+    st.session_state.sandbox_ab_status = False # Initial state if user ab is not logged in in sandbox
+
     
 
 
@@ -79,6 +88,10 @@ def login():
         else:
             st.error("Invalid username or password.")
             
+def loading_tab():
+    with st.spinner("Loading Tab Content"):
+        sleep(.65)
+        
 def sidebarlogin():
     with st.sidebar:
     
@@ -117,19 +130,69 @@ def show_summary(stats):
 
     st.markdown(file_list)
 
+     with st.expander("Show Files"):
+        st.markdown(file_list)
+
     remaining = len(stats["filenames"]) - max_show
+    remaining = 0 if remaining < 1 else remaining # return 0 if negative
+
     st.caption(f"Showing the first {max_show} of {len(stats['filenames'])} generated files. "
-            f"{remaining} additional file(s) are included in the ZIP download.")
+            f"{remaining} additional file(s) are included in the ZIP download. \n Click outside this window to close, and Dowload the Zip File(s)")
+    st.button("🆙 Upload Task Agent.")
+
+ def create_zip(output_files: list[Path], zip_name: str) -> Path:
     
-    st.write("Click outside this window to close, and Dowload the Zip File(s)")
+        zip_path = Path("Output") / zip_name
+    
+        with ZipFile(zip_path, "w") as zip_file:
+    
+            for file in output_files:
+                zip_file.write(file, arcname=file.name)
+    
+        return zip_path
+     
+def load_page_base():
+    sidebarlogin()
+    bg_img = get_base64("assets/bgpcppi1.jpg")
+    
+    st.markdown(f"""
+    <style>
+
+    .stApp {{
+        background-image: url("data:image/jpeg;base64,{bg_img}");
+        background-size: 100% 125%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }}
+
+    </style>
+    """, unsafe_allow_html=True)
+    st.markdown("""
+    <style>
+
+    .block-container {
+        max-width: 950px;
+        margin: 90px auto 0 auto;
+        padding: 15px 75px 90px 90px;
+        background: rgba(48,92,222,.70);
+        backdrop-filter: blur(35px);
+        border:1px solid rgba(255,255,255,.35);
+        box-shadow:0 10px 35px rgba(0,0,0,.25);
+        border-radius:20px;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
 
 def main():
-    sidebarlogin()
 
     bg_img = get_base64("assets/bgpcppi1.jpg")
     st.title(" RTM Command Center")
     st.header("📅 DMS Schedule Generator", divider = True )
-    
+
+    load_page_base()
+
     st.set_page_config(
     
         page_title="RCC - Schedule Generator",
@@ -138,36 +201,7 @@ def main():
         initial_sidebar_state="auto"
     
     )
-    st.markdown(f"""
-    <style>
-    
-    .stApp {{
-        background-image: url("data:image/jpeg;base64,{bg_img}");
-        background-size: 100% 120%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }}
-    
-    </style>
-    """, unsafe_allow_html=True)
-    st.markdown("""
-    <style>
-    
-    .block-container {
-        max-width: 850px;
-        margin: 90px auto 0 auto;
-        padding: 35px;
-                
-        background: rgba(48,92,222,.70);
-        backdrop-filter: blur(35px);
-        border:1px solid rgba(255,255,255,.35);
-        box-shadow:0 10px 35px rgba(0,0,0,.25);
-        border-radius:20px;
-    }
-    
-    </style>
-    """, unsafe_allow_html=True)
+
     st.markdown("""
     <style>
     
@@ -196,19 +230,11 @@ def main():
     </style>
     """, unsafe_allow_html=True)
     
-    def create_zip(output_files: list[Path], zip_name: str) -> Path:
-    
-        zip_path = Path("Output") / zip_name
-    
-        with ZipFile(zip_path, "w") as zip_file:
-    
-            for file in output_files:
-                zip_file.write(file, arcname=file.name)
-    
-        return zip_path
+   
     
     st.write("🎉 Please upload (1) file at time, make sure that it is in correct format before Running the script!")
     
+    st.subheader("Upload File",divider=True)
     uploaded_file = st.file_uploader(
                     "Upload Consolidated RSR Schedule Summary",
                     type=["xlsx"],
@@ -216,9 +242,11 @@ def main():
                 )
     if uploaded_file:
         df = pd.read_excel(uploaded_file)
-        st.success("File uploaded successfully!")
-        st.write(f'Initial checking you have **{len(df)} ** number of outlets in your file:')
-        st.dataframe(df.head())
+        
+         with st.expander("Show Details",type='compact'):
+            st.success("File uploaded successfully!")
+            st.caption(preview)
+            st.dataframe(df.nunique())
     
     with st.sidebar:
     
@@ -282,29 +310,36 @@ def main():
             ---
             """)
     
-    month = st.selectbox(
-                    "Month",
-                    range(1,13),
-                    index=0,
-                    format_func = lambda x : calendar.month_name[x] # July
-                )
-    
-    year = st.number_input(
-        "Year",
-        min_value=2025,
-        max_value=2050,
-        value=2026
-    )
+   st.subheader("Month & Date Range", divider=True)
+    main_sel1, main_sel2, main_sel3 = st.columns(3,gap='small')
+    with main_sel1:
+        month = st.selectbox(
+                        "Month",
+                        range(1,13),
+                        index=0,
+                        format_func=lambda x: calendar.month_name[x]     # July
+                    )
+
+    with main_sel3:
+        year = st.number_input(
+            "Year",
+            min_value=2025,
+            max_value=2050,
+            value=2026
+        )
+        
     last_day_of_month =calendar.monthrange(year,month)[1]
     st.caption(f"Last day of {calendar.month_name[month]} {year}: **{last_day_of_month}**")
-    
-    start_day = st.selectbox(
-        "Start Day",
-        options=list(range(1, last_day_of_month + 1)),
-        index = 0,
-        help  = f"Select a day between 1 and {last_day_of_month}."
-    
-    )
+
+   with main_sel2:
+        start_day = st.selectbox(
+            "Start Day",
+            options=list(range(1, last_day_of_month + 1)),
+            index = 0,
+            help  = f"Select a day between 1 and {last_day_of_month}."
+
+        )
+
     @st.dialog("Select File Upload types")
     def select_type_dialog():
         st.write(" What type of file are you uploading? ")
@@ -348,7 +383,8 @@ def main():
     "Output filename",
     "Your_File_Name.csv"
     )       
-    
+
+     #------------------ GENERATE SCHEDULE -----------------#
     if uploaded_file:
         
     
