@@ -524,7 +524,31 @@ if not st.session_state.logged_in:
             login()
     st.stop()
 
-main()
+
+#------------ TAB ASSIGNMENT ---------------#
+
+tab1, tab2  = st.tabs(["📈 Schedules", "🗃 Data"],on_change="rerun")
+
+if tab1.open:
+    with tab1:
+        loading_tab()
+        main()
+elif tab2.open:
+
+    with tab2:
+        loading_tab()
+        load_page_base()
+        tb2_tb1, tb2_tb2 = st.tabs(["Coob Generation","Analysis"])
+
+        with tb2_tb1:
+            upload_file = st.file_uploader(
+                        "Upload Reference file for Coob",
+                        type=["xlsx"],
+                        accept_multiple_files = False,
+            )
+
+#--------------- TAB ---------------------#
+
 
 #------------------ APP FLOW -----------------#
 # Developer: Japs
@@ -550,3 +574,32 @@ main()
 
 
 #------------------ APP FLOW END -----------------#
+
+#------------ App Flow v2 -----------------------#
+    #              ProjectRCC
+
+    #       Upload RSR Excel File
+    #                 │
+    #                 ▼
+    #      Validate File Contents
+    #                 │
+    #                 ▼
+    #       Generate Schedule CSV
+    #                 │
+    #                 ▼
+    #     Verify Generated Output
+    #                 │
+    #                 ▼
+    #   🌐 Open Company Upload Portal
+    #                 │
+    #                 ▼
+    #          Login Automatically
+    #                 │
+    #                 ▼
+    #       Upload Generated CSV
+    #                 │
+    #                 ▼
+    #     Wait for Upload Complete
+    #                 │
+    #                 ▼
+    #   Display Success / Error Report
