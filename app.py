@@ -127,9 +127,6 @@ def show_summary(stats):
         files = stats["filenames"][:max_show]
 
     file_list = "\n".join(f"- `{file}`" for file in files)
-
-    st.markdown(file_list)
-
     with st.expander("Show Files"):
         st.markdown(file_list)
 
