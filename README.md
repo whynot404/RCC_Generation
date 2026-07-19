@@ -155,7 +155,7 @@ Current Version: **1.0.0**
 
 ## 👨‍💻 Developer
 
-Developed by **Your Name**
+Developed by **Z**
 
 Project RCC was created to simplify and automate the generation of EDS Schedule Upload Files for internal operational use.
 
